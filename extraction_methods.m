@@ -9,5 +9,5 @@
 % https://www.mathworks.com/help/wavelet/ref/dwt.html https://www.mathworks.com/help/wavelet/ref/wfilters.html
 
 function result = maxFFT(X)
-  result = max(X);
+  result = max(fft(X));
 end
