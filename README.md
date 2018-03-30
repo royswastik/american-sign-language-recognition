@@ -23,3 +23,9 @@ This repository contains techniques to extract features from time series data.
 ## Frequency Domain Feature Extraction Techniques
 
 * Max frequency after FFT 
+
+
+Related Publications
+- SVD-based Feature Extraction from Time-series Motion Data and Its Application to Gesture Recognition (https://pdfs.semanticscholar.org/a777/e826cfbf84d284025fb6fc9cfd436ded4234.pdf) 
+- Accelerometer Gesture Recognition (http://cs229.stanford.edu/proj2014/Michael%20Xie,%20David%20Pan,%20Accelerometer%20Gesture%20Recognition.pdf)
+- Spatio-Temporal Feature-Extraction Techniques for Isolated Gesture Recognition in Arabic Sign Language (http://ieeexplore.ieee.org/document/4200816/)
