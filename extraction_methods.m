@@ -27,16 +27,21 @@ function feature = root_mean_square(X)
   feature = rms(s);
 end
 
-% Mean of power in frequency domain TODO - Explain in a better way
-function feature = mean_power_f(X)
+% Stats of power in frequency domain TODO - Explain in a better way
+function [ mean, sd] = mean_power_f(X)
   y = fft(X);
   power = abs(y).^2/length(y);
-  feature = mean(power);
+  mean = mean(power);
+  sd = std(power);
 end
 
-% Standard Deviation of power TODO - Explain in a better way
-function feature = sd_power_f(X)
-  y = fft(X);
-  power = abs(y).^2/length(y);
-  feature = std(power);
+
+% Spatial Features - Start
+
+% Reads data for x, y and z vectors and makes combined feature
+function [mean, sd] = vector_mean(x,y,z)
+  combined = sqrt(x.^2 + y.^2 + z.^2);
+  mean = mean(combined);
+  sd = std(combined);
 end
+% Spatial Features - End
