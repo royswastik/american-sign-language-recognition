@@ -9,8 +9,8 @@
 % https://www.mathworks.com/help/wavelet/ref/dwt.html https://www.mathworks.com/help/wavelet/ref/wfilters.html
 
 % Maximum frequency from FFT Output
-function result = maxFFT(X)
-  result = max(fft(X));
+function feature = maxFFT(X)
+  feature = max(fft(X));
 end
 
 % Zero crossing rate
