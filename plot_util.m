@@ -1,5 +1,4 @@
 function plot_util(x, y, ttl, xlbl, ylbl, file_path, file_nm)
-   
     h = figure('visible','off');
     for cnt = 1:y.Count
       plot(x,cell2mat(y(cnt)))
