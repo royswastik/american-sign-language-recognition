@@ -25,6 +25,11 @@ This repository contains techniques to extract features from time series data.
 * Max frequency after FFT 
 
 
+Resources:
+
+http://tsfresh.readthedocs.io/en/latest/text/list_of_features.html
+
+
 Related Publications
 - SVD-based Feature Extraction from Time-series Motion Data and Its Application to Gesture Recognition (https://pdfs.semanticscholar.org/a777/e826cfbf84d284025fb6fc9cfd436ded4234.pdf) 
 - Accelerometer Gesture Recognition (http://cs229.stanford.edu/proj2014/Michael%20Xie,%20David%20Pan,%20Accelerometer%20Gesture%20Recognition.pdf)
