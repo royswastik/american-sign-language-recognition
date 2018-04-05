@@ -29,6 +29,8 @@ Resources:
 
 http://tsfresh.readthedocs.io/en/latest/text/list_of_features.html
 
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4401457/table/pone.0124414.t002/?report=objectonly
+
 
 Related Publications
 - SVD-based Feature Extraction from Time-series Motion Data and Its Application to Gesture Recognition (https://pdfs.semanticscholar.org/a777/e826cfbf84d284025fb6fc9cfd436ded4234.pdf) 
