@@ -45,3 +45,11 @@ function [mean, sd] = vector_mean(x,y,z)
   sd = std(combined);
 end
 % Spatial Features - End
+
+%by Bharath
+%Energy consumption - start
+function feature=energy_consumption(x)
+  m=fft(x);
+  feature=sum(abs(m).^2) / length(m);
+end
+%Energy consumption - end
