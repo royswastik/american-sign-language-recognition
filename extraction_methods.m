@@ -53,3 +53,11 @@ function feature=energy_consumption(x)
   feature=sum(abs(m).^2) / length(m);
 end
 %Energy consumption - end
+
+%Hamming window - start
+function feature=hamming_window(x)
+  feature=hamming(x)
+end
+%hamming window - end
+
+%
