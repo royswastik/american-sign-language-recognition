@@ -12,7 +12,7 @@ for i = 1:classCount
     indx = y_train;
     indx(indx ~= classNames(i)) = 0; % Create binary classes for each classifier
     indx(indx == classNames(i)) = 1;
-    SVMModels{i} = fitcsvm(X_train,indx,'ClassNames',[0 1],'Standardize',true,...
+    SVMModels{i} = fitcsvm(X_train,indx,'ClassNames',[1 0],'Standardize',true,...
         'KernelFunction','rbf','BoxConstraint',1);
     model_nm = strcat('models/SVM_model', num2str(i) ,'_',  num2str(now));
     disp(i);
@@ -24,10 +24,11 @@ predictions = {};
 
 %classify test cases
 for j=1:size(y_test,1)
-    test_instance = X_test(i);
+    test_instance = X_test(i, :);
     max_score = 0;
     max_label = 0;
     for k=1:10
+        actual_label = y_test(i, :);
         [label,score] = predict(SVMModels{k},test_instance);
         if label == 1
             if score > max_score
@@ -36,7 +37,7 @@ for j=1:size(y_test,1)
             end
         end
     end
-    predictions(j) = k;
+    predictions(j) = max_label;
 end
 
 
