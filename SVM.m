@@ -2,6 +2,8 @@ function [acc,precision,recall, f1score] = SVM(X_train,y_train,X_test,y_test)
 
 SVMModel = fitcsvm(X_train,y_train,'Standardize',true,'KernelFunction','RBF','ClassNames',[0,1]);
 
+saveCompactModel(SVMModel, 'models/SVMModel');
+
 [label,score] = predict(SVMModel,X_test);
 
 
