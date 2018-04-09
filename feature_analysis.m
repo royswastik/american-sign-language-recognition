@@ -50,11 +50,28 @@ for fl_nm_ind = 1:length(fl_nms)
         
 %         Setting features for classification task
         f_acc_l = [EO.maxFFT(alx(:,2:end)), EO.maxFFT(aly(:,2:end)), EO.maxFFT(alz(:,2:end))];
-        f_acc_r = [EO.maxFFT(arx(:,2:end)) EO.maxFFT(ary(:,2:end)) EO.maxFFT(arz(:,2:end))];
+        f_acc_r = [EO.maxFFT(arx(:,2:end)) EO.maxFFT(ary(:,2:end)) EO.maxFFT(arz(:,2:end)), 
+            EO.waveform_length(arx(:,2:end)) EO.waveform_length(ary(:,2:end)) EO.waveform_length(arz(:,2:end)), 
+            EO.root_mean_square(arx(:,2:end)) EO.root_mean_square(ary(:,2:end)) EO.root_mean_square(arz(:,2:end)),
+            EO.vector_mean(arx(:,2:end), ary(:,2:end), arz(:,2:end)) EO.vector_sd(arx(:,2:end), ary(:,2:end), arz(:,2:end)),
+            EO.mean_power_f(arx(:,2:end), ary(:,2:end), arz(:,2:end)) EO.sd_power_f(arx(:,2:end), ary(:,2:end), arz(:,2:end)), 
+            EO.energy_consumption(arx(:,2:end)) EO.energy_consumption(ary(:,2:end)) EO.energy_consumption(arz(:,2:end)), 
+            EO.hamming_window(arx(:,2:end)) EO.hamming_window(ary(:,2:end)) EO.hamming_window(arz(:,2:end)), 
+            EO.skew(arx(:,2:end)) EO.skew(ary(:,2:end)) EO.skew(arz(:,2:end)) ], 
+            EO.average_in_heading_direction(arx(:,2:end), ary(:,2:end), arz(:,2:end))];
         f_emg_l = [EO.maxFFT(emg0l(:,2:end)) EO.maxFFT(emg1l(:,2:end)) EO.maxFFT(emg2l(:,2:end)) EO.maxFFT(emg3l(:,2:end)) EO.maxFFT(emg4l(:,2:end)) EO.maxFFT(emg5l(:,2:end)) EO.maxFFT(emg6l(:,2:end))];
         f_emg_r = [EO.maxFFT(emg0r(:,2:end)) EO.maxFFT(emg1r(:,2:end)) EO.maxFFT(emg2r(:,2:end)) EO.maxFFT(emg3r(:,2:end)) EO.maxFFT(emg4r(:,2:end)) EO.maxFFT(emg5r(:,2:end)) EO.maxFFT(emg6r(:,2:end))];
         f_gyro_l = [EO.maxFFT(glx(:,2:end)) EO.maxFFT(gly(:,2:end)) EO.maxFFT(glz(:,2:end))];
         f_gyro_r = [EO.maxFFT(grx(:,2:end)) EO.maxFFT(gry(:,2:end)) EO.maxFFT(grz(:,2:end))];
+        f_gyro_r = [EO.maxFFT(grx(:,2:end)) EO.maxFFT(gry(:,2:end)) EO.maxFFT(grz(:,2:end)),
+                EO.waveform_length(grx(:,2:end)) EO.waveform_length(gry(:,2:end)) EO.waveform_length(grz(:,2:end)),
+                EO.root_mean_squgre(grx(:,2:end)) EO.root_mean_squgre(gry(:,2:end)) EO.root_mean_squgre(grz(:,2:end)),
+                EO.vector_mean(grx(:,2:end), gry(:,2:end), grz(:,2:end)) EO.vector_sd(grx(:,2:end), gry(:,2:end), grz(:,2:end)),
+                EO.mean_power_f(grx(:,2:end), gry(:,2:end), grz(:,2:end)) EO.sd_power_f(grx(:,2:end), gry(:,2:end), grz(:,2:end)),
+                EO.energy_consumption(grx(:,2:end)) EO.energy_consumption(gry(:,2:end)) EO.energy_consumption(grz(:,2:end)),
+                EO.hamming_window(grx(:,2:end)) EO.hamming_window(gry(:,2:end)) EO.hamming_window(grz(:,2:end)),
+                EO.skew(grx(:,2:end)) EO.skew(gry(:,2:end)) EO.skew(grz(:,2:end)) ],
+                EO.average_in_heading_direction(grx(:,2:end), gry(:,2:end), grz(:,2:end))];
         f_or_l = [EO.maxFFT(orl(:,2:end)) EO.maxFFT(opl(:,2:end)) EO.maxFFT(oyl(:,2:end))];
         f_or_r = [EO.maxFFT(orr(:,2:end)) EO.maxFFT(opr(:,2:end)) EO.maxFFT(oyr(:,2:end))];
         f_label = [fl_nm_ind];

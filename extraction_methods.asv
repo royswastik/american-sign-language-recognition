@@ -46,10 +46,14 @@ classdef extraction_methods
     % Spatial Features - Start
 
     % Reads data for x, y and z vectors and makes combined feature
-    function [mean, sd] = vector_mean(obj,x,y,z)
+    function mean = vector_mean(obj,x,y,z)
       combined = sqrt(x.^2 + y.^2 + z.^2);
       mean = mean(combined);
-      feature = std(combined);
+    end
+    
+    function sd = vector_sd(obj,x,y,z)
+      combined = sqrt(x.^2 + y.^2 + z.^2);
+      sd = std(combined);
     end
     % Spatial Features - End
 
@@ -68,9 +72,13 @@ classdef extraction_methods
 	%hamming window - end
     
     %Gyroscore mean - start
-	function [mean, sd] = gyroscope_mean(obj,gx, gy, gz)
+	function feature = gyroscope_mean(obj,gx, gy, gz)
 	  combined = sqrt(x.^2 + y.^2 + z.^2);
-      mean = mean(combined);
+      feature = mean(combined);
+    end
+    
+    function feature = gyroscope_sd(obj,gx, gy, gz)
+	  combined = sqrt(x.^2 + y.^2 + z.^2);
       feature = std(combined);
 	end
 	%Gyroscope mean - end
@@ -81,16 +89,20 @@ classdef extraction_methods
     end
     % Skewness - end
     
-    % Skewness - start
+    % Assuming heading direction has maximum variance
     function feature = average_in_heading_direction(obj, X, Y, Z)
       var_x = var(X);
       var_y = var(Y);
       var_z = var(Z);
       max_variance = [var_x var_y var_z];
-      if
+      if max_variance == var_x
+          feature = mean(X)
+      elseif max_variance == var_y
+          feature = mean(Y)
+      else
+          feature = mean(Z)
+      end     
     end
-    % Skewness - end
-    
     
    end
 end

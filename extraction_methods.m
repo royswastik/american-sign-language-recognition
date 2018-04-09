@@ -35,10 +35,15 @@ classdef extraction_methods
     end
 
     % Stats of power in frequency domain TODO - Explain in a better way
-    function [mean, sd] = mean_power_f(obj,X)
+    function mean = mean_power_f(obj,X)
       y = fft(X);
       power = abs(y).^2/length(y);
       mean = mean(power);
+    end
+    
+    function sd = sd_power_f(obj,X)
+      y = fft(X);
+      power = abs(y).^2/length(y);
       sd = std(power);
     end
 
@@ -46,10 +51,14 @@ classdef extraction_methods
     % Spatial Features - Start
 
     % Reads data for x, y and z vectors and makes combined feature
-    function [mean, sd] = vector_mean(obj,x,y,z)
+    function mean = vector_mean(obj,x,y,z)
       combined = sqrt(x.^2 + y.^2 + z.^2);
       mean = mean(combined);
-      feature = std(combined);
+    end
+    
+    function sd = vector_sd(obj,x,y,z)
+      combined = sqrt(x.^2 + y.^2 + z.^2);
+      sd = std(combined);
     end
     % Spatial Features - End
 
@@ -68,9 +77,13 @@ classdef extraction_methods
 	%hamming window - end
     
     %Gyroscore mean - start
-	function [mean, sd] = gyroscope_mean(obj,gx, gy, gz)
+	function feature = gyroscope_mean(obj,gx, gy, gz)
 	  combined = sqrt(x.^2 + y.^2 + z.^2);
-      mean = mean(combined);
+      feature = mean(combined);
+    end
+    
+    function feature = gyroscope_sd(obj,gx, gy, gz)
+	  combined = sqrt(x.^2 + y.^2 + z.^2);
       feature = std(combined);
 	end
 	%Gyroscope mean - end
