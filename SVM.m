@@ -20,22 +20,22 @@ for i = 1:classCount
 end
 % Model=svm.train(X_train,y_train);
 
-predictions = {};
+predictions = zeros(length(X_test(:,1)),1);
 
 %classify test cases
 for j=1:size(y_test,1)
     test_instance = X_test(i, :);
-    max_score = 0;
+    max_score = -1000;
     max_label = 0;
     for k=1:10
-        actual_label = y_test(i, :);
-        [label,score] = predict(SVMModels{k},test_instance);
-        if label == 1
-            if score > max_score
-                max_score = score;
+        actual_label = y_test(j, :);
+        [label,score2] = predict(SVMModels{k},test_instance);
+%         if label == 1
+            if score2(1) > max_score
+                max_score = score2(1);
                 max_label = k;
             end
-        end
+%         end
     end
     predictions(j) = max_label;
 end
