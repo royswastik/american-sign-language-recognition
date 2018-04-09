@@ -1,12 +1,40 @@
 function [acc,precision,recall, f1score] = SVM(X_train,y_train,X_test,y_test)
 
-SVMModel = fitcsvm(X_train,y_train,'Standardize',true,'KernelFunction','RBF','ClassNames',[0,1]);
+% SVMModel = fitcsvm(X_train,y_train,'Standardize',true,'KernelFunction','RBF');
 
-[label,score] = predict(SVMModel,X_test);
+
+classNames = unique([y_test' y_train']) ;
+
+classCount = numel(classNames);
+SVMModels = cell(classCount,1);
+mkdir('models');
+% 10 models for 10 actions, using 1 vs all SVM
+for i = 1:classCount
+    indx = y_train;
+    indx(indx ~= classNames(i)) = 0; % Create binary classes for each classifier
+    indx(indx == classNames(i)) = 1;
+    SVMModels{i} = fitcsvm(X_train,indx,'ClassNames',[0 1],'Standardize',true,...
+        'KernelFunction','rbf','BoxConstraint',1);
+    model_nm = strcat('models/SVM_model', num2str(i) ,'_',  num2str(now));
+    disp(i);
+    saveCompactModel(SVMModels{i}, model_nm)
+end
+% Model=svm.train(X_train,y_train);
+
+for i = 1:length(y_test)
+    test_instance = X_test(i);
+    predicted_lab
+    for j = 1:10
+    end
+end
+
+% [label,score] = predict(SVMModel,X_test);
+predict=svm.predict(Model,X_test);
 
 
 tc = transpose(y_test); % True classes
-pc = transpose(label); % Predicted classes
+% pc = transpose(label); % Predicted classes
+pc = transpose(predict); % Predicted classes
 
 % h = figure;
 % plotroc(tc,pc);

@@ -22,26 +22,31 @@ classdef extraction_methods
 
     % Zero crossing rate
     function feature = zero_crossing_rate(obj,X)
-      feature = sum(abs(diff(X>0)))/length(X);
+        X = cell2mat(X);
+        feature = sum(abs(diff(X>0)))/length(X);
     end
 
     function feature = waveform_length(obj,X)
-      feature = sum(abs(diff(X)));
+        X = cell2mat(X);
+        feature = sum(abs(diff(X)));
     end
 
     % Root mean square
     function feature = root_mean_square(obj,X)
-      feature = rms(s);
+        X = cell2mat(X);
+        feature = rms(X);
     end
 
     % Stats of power in frequency domain TODO - Explain in a better way
-    function mean = mean_power_f(obj,X)
+    function res = mean_power_f(obj,X)
+      X = cell2mat(X);
       y = fft(X);
       power = abs(y).^2/length(y);
-      mean = mean(power);
+      res = mean(power);
     end
     
     function sd = sd_power_f(obj,X)
+      X = cell2mat(X);
       y = fft(X);
       power = abs(y).^2/length(y);
       sd = std(power);
@@ -51,12 +56,18 @@ classdef extraction_methods
     % Spatial Features - Start
 
     % Reads data for x, y and z vectors and makes combined feature
-    function mean = vector_mean(obj,x,y,z)
+    function res = vector_mean(obj,x,y,z)
+      x = cell2mat(x);
+      y = cell2mat(y);
+      z = cell2mat(z);
       combined = sqrt(x.^2 + y.^2 + z.^2);
-      mean = mean(combined);
+      res = mean(combined);
     end
     
     function sd = vector_sd(obj,x,y,z)
+      x = cell2mat(x);
+      y = cell2mat(y);
+      z = cell2mat(z);
       combined = sqrt(x.^2 + y.^2 + z.^2);
       sd = std(combined);
     end
@@ -65,37 +76,49 @@ classdef extraction_methods
        %by Bharath
 	%Energy consumption - start
 	function feature=energy_consumption(obj,x)
-	  m=fft(x);
-	  feature=sum(abs(m).^2) / length(m);
+        x = cell2mat(x);
+        m=fft(x);
+        feature=sum(abs(m).^2) / length(m);
 	end
 	%Energy consumption - end
 
 	%Hamming window - start
 	function feature=hamming_window(obj,x)
-	  feature=hamming(x)
+        x = cell2mat(x);
+        feature=hamming(x)
 	end
 	%hamming window - end
     
     %Gyroscore mean - start
 	function feature = gyroscope_mean(obj,gx, gy, gz)
-	  combined = sqrt(x.^2 + y.^2 + z.^2);
+        gx = cell2mat(gx);
+        gy = cell2mat(gy);
+        gz = cell2mat(gz);
+	  combined = sqrt(gx.^2 + gy.^2 + gz.^2);
       feature = mean(combined);
     end
     
     function feature = gyroscope_sd(obj,gx, gy, gz)
-	  combined = sqrt(x.^2 + y.^2 + z.^2);
+        gx = cell2mat(gx);
+        gy = cell2mat(gy);
+        gz = cell2mat(gz);
+	  combined = sqrt(gx.^2 + gy.^2 + gz.^2);
       feature = std(combined);
 	end
 	%Gyroscope mean - end
     
     % Skewness - start
     function feature = skew(obj, X)
+        X = cell2mat(X);
       feature = skewness(X)
     end
     % Skewness - end
     
     % Assuming heading direction has maximum variance
     function feature = average_in_heading_direction(obj, X, Y, Z)
+        X = cell2mat(X);
+        Y = cell2mat(Y);
+        Z = cell2mat(Z);
       var_x = var(X);
       var_y = var(Y);
       var_z = var(Z);
