@@ -6,6 +6,8 @@ t = nn_Y';
 trainFcn = 'trainscg';
 
 hiddenLayerSize = 10;
+
+% Returns the neural network model
 net = patternnet(hiddenLayerSize, trainFcn);
 
 net.divideFcn = 'divideind';

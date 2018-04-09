@@ -15,7 +15,7 @@ for fl_nm_ind = 1:length(fl_nms)
     fclose(fid);
 
 %     for row = 1:34:647
-    for row = 1:34:67
+    for row = 1:34:136
         alx =[];aly =[];alz =[];arx =[];ary =[];arz =[];
         glx =[];gly =[];glz =[];grx =[];gry =[];grz =[];
         orl =[];opl =[];oyl =[];orr =[];opr =[];oyr =[];
@@ -67,9 +67,10 @@ end
 function plot_helper(sensors, file_name, fig_path, title, x_label, y_label)
     first_sensor = sensors(1, :);
     sensor_dir_name = strcat(char(fig_path),file_name, '\');
+    mkdir(char(fig_path));
     mkdir(sensor_dir_name);
     file_name = strcat(file_name,'_',extractBefore(first_sensor(1,1),'_'));
-    mkdir(char(fig_path));
+    
     
     x = linspace(0,length(first_sensor(:,2:end)),length(first_sensor(:,2:end)));
 %     valueSet = {orr(:,2:end), opr(:,2:end), oyr(:,2:end)};

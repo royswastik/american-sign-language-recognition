@@ -81,20 +81,16 @@ classdef extraction_methods
     end
     % Skewness - end
     
-    % Assuming heading direction has maximum variance
+    % Skewness - start
     function feature = average_in_heading_direction(obj, X, Y, Z)
       var_x = var(X);
       var_y = var(Y);
       var_z = var(Z);
       max_variance = [var_x var_y var_z];
-      if max_variance == var_x
-          feature = mean(X)
-      elseif max_variance == var_y
-          feature = mean(Y)
-      else
-          feature = mean(Z)
-      end     
+      if
     end
+    % Skewness - end
+    
     
    end
 end
