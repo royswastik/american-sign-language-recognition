@@ -57,7 +57,7 @@ for fl_nm_ind = 1:length(fl_nms)
         tmp_feature = [tmp_feature, ext_obj.maxFFT(grx(:,2:end)) ext_obj.maxFFT(gry(:,2:end)) ext_obj.maxFFT(grz(:,2:end))];
         tmp_feature = [tmp_feature, ext_obj.maxFFT(orl(:,2:end)) ext_obj.maxFFT(opl(:,2:end)) ext_obj.maxFFT(oyl(:,2:end))];
         tmp_feature = [tmp_feature, ext_obj.maxFFT(orr(:,2:end)) ext_obj.maxFFT(opr(:,2:end)) ext_obj.maxFFT(oyr(:,2:end))];
-        
+        tmp_feature = [tmp_feature, fl_nm_ind];
         
         
         feature_row = tmp_feature;
