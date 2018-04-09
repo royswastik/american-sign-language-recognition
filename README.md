@@ -29,7 +29,14 @@ Resources:
 
 http://tsfresh.readthedocs.io/en/latest/text/list_of_features.html
 
+#list of Features which can be used:
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4401457/table/pone.0124414.t002/?report=objectonly
+
+#related main paper for the above link:
+#Feature Selection for Wearable Smartphone-Based Human Activity Recognition with Able bodied, Elderly, and Stroke Patients
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4401457/ 
+
+
 
 
 Related Publications
