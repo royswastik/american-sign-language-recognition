@@ -13,9 +13,9 @@ for fl_nm_ind = 1:length(fl_nms)
     datatypes = '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
     data = textscan(fid,datatypes,'headerlines', 1, 'delimiter', ',');
     fclose(fid);
-
+    height = length(data{1}) - 34 +1;
 %     for row = 1:34:647
-    for row = 1:34:136
+    for row = 1:34:height
         alx =[];aly =[];alz =[];arx =[];ary =[];arz =[];
         glx =[];gly =[];glz =[];grx =[];gry =[];grz =[];
         orl =[];opl =[];oyl =[];orr =[];opr =[];oyr =[];
