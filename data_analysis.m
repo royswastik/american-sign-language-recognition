@@ -42,23 +42,23 @@ for fl_nm_ind = 1:length(fl_nms)
         
     
         
-        plot_helper([alx; aly; alz], "AL", fig_path,'Accelerometer Data Analysis', 'Time', 'Accelerometer(L)');
-        plot_helper([arx; ary; arz], "AR", fig_path,'Accelerometer Data Analysis', 'Time', 'Accelerometer(R)'); 
-        plot_helper([emg0l; emg1l; emg2l; emg3l; emg4l; emg5l; emg6l; emg7l], "EMGL", fig_path,'EMG Data Analysis', 'Time', 'EMG(L)');   
-        plot_helper([emg0r; emg1r; emg2r; emg3r; emg4r; emg5r; emg6r; emg7r], "EMGR", fig_path,'EMG Data Analysis', 'Time', 'EMG(R)');
-        plot_helper([glx; gly; glz], "GL", fig_path,'GyroScope Data Analysis', 'Time', 'GyroScope(L)');
-        plot_helper([grx; gry; grz], "GR", fig_path,'GyroScope Data Analysis', 'Time', 'GyroScope(R)');
-        plot_helper([orl; opl; oyl], "OL", fig_path,'Orientation Data Analysis', 'Time', 'Orientation(L)');
-        plot_helper([orr; opr; oyr], "OR", fig_path,'Orientation Data Analysis', 'Time', 'Orientation(R)');
+        plot_helper([alx; aly; alz], 'AL', fig_path,'Accelerometer Data Analysis', 'Time', 'Accelerometer(L)');
+        plot_helper([arx; ary; arz], 'AR', fig_path,'Accelerometer Data Analysis', 'Time', 'Accelerometer(R)'); 
+        plot_helper([emg0l; emg1l; emg2l; emg3l; emg4l; emg5l; emg6l; emg7l], 'EMGL', fig_path,'EMG Data Analysis', 'Time', 'EMG(L)');   
+        plot_helper([emg0r; emg1r; emg2r; emg3r; emg4r; emg5r; emg6r; emg7r], 'EMGR', fig_path,'EMG Data Analysis', 'Time', 'EMG(R)');
+        plot_helper([glx; gly; glz], 'GL', fig_path,'GyroScope Data Analysis', 'Time', 'GyroScope(L)');
+        plot_helper([grx; gry; grz], 'GR', fig_path,'GyroScope Data Analysis', 'Time', 'GyroScope(R)');
+        plot_helper([orl; opl; oyl], 'OL', fig_path,'Orientation Data Analysis', 'Time', 'Orientation(L)');
+        plot_helper([orr; opr; oyr], 'OR', fig_path,'Orientation Data Analysis', 'Time', 'Orientation(R)');
         
-        plot_FFT([alx; aly; alz], "AL", fig_path,'Accelerometer Data Analysis', 'Frequency', 'Accelerometer(L)');
-        plot_FFT([arx; ary; arz], "AR", fig_path,'Accelerometer Data Analysis', 'Frequency', 'Accelerometer(R)'); 
-        plot_FFT([emg0l; emg1l; emg2l; emg3l; emg4l; emg5l; emg6l; emg7l], "EMGL", fig_path,'EMG Data Analysis', 'Frequency', 'EMG(L)');   
-        plot_FFT([emg0r; emg1r; emg2r; emg3r; emg4r; emg5r; emg6r; emg7r], "EMGR", fig_path,'EMG Data Analysis', 'Frequency', 'EMG(R)');
-        plot_FFT([glx; gly; glz], "GL", fig_path,'GyroScope Data Analysis', 'Frequency', 'GyroScope(L)');
-        plot_FFT([grx; gry; grz], "GR", fig_path,'GyroScope Data Analysis', 'Frequency', 'GyroScope(R)');
-        plot_FFT([orl; opl; oyl], "OL", fig_path,'Orientation Data Analysis', 'Frequency', 'Orientation(L)');
-        plot_FFT([orr; opr; oyr], "OR", fig_path,'Orientation Data Analysis', 'Frequency', 'Orientation(R)');
+        plot_FFT([alx; aly; alz], 'AL', fig_path,'Accelerometer Data Analysis', 'Frequency', 'Accelerometer(L)');
+        plot_FFT([arx; ary; arz], 'AR', fig_path,'Accelerometer Data Analysis', 'Frequency', 'Accelerometer(R)'); 
+        plot_FFT([emg0l; emg1l; emg2l; emg3l; emg4l; emg5l; emg6l; emg7l], 'EMGL', fig_path,'EMG Data Analysis', 'Frequency', 'EMG(L)');   
+        plot_FFT([emg0r; emg1r; emg2r; emg3r; emg4r; emg5r; emg6r; emg7r], 'EMGR', fig_path,'EMG Data Analysis', 'Frequency', 'EMG(R)');
+        plot_FFT([glx; gly; glz], 'GL', fig_path,'GyroScope Data Analysis', 'Frequency', 'GyroScope(L)');
+        plot_FFT([grx; gry; grz], 'GR', fig_path,'GyroScope Data Analysis', 'Frequency', 'GyroScope(R)');
+        plot_FFT([orl; opl; oyl], 'OL', fig_path,'Orientation Data Analysis', 'Frequency', 'Orientation(L)');
+        plot_FFT([orr; opr; oyr], 'OR', fig_path,'Orientation Data Analysis', 'Frequency', 'Orientation(R)');
 
     end
 end
