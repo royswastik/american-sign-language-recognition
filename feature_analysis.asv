@@ -1,4 +1,4 @@
-EO = extraction_methods;
+ext_obj = extraction_methods;
 
 fl_nms = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
 
@@ -49,18 +49,18 @@ for fl_nm_ind = 1:length(fl_nms)
         
         
 %         Setting features for classification task
-        f_acc_l = [EO.maxFFT(alx(:,2:end)), EO.maxFFT(aly(:,2:end)), EO.maxFFT(alz(:,2:end))];
-        f_acc_r = [EO.maxFFT(arx(:,2:end)) EO.maxFFT(ary(:,2:end)) EO.maxFFT(arz(:,2:end))];
-        f_emg_l = [EO.maxFFT(emg0l(:,2:end)) EO.maxFFT(emg1l(:,2:end)) EO.maxFFT(emg2l(:,2:end)) EO.maxFFT(emg3l(:,2:end)) EO.maxFFT(emg4l(:,2:end)) EO.maxFFT(emg5l(:,2:end)) EO.maxFFT(emg6l(:,2:end))];
-        f_emg_r = [EO.maxFFT(emg0r(:,2:end)) EO.maxFFT(emg1r(:,2:end)) EO.maxFFT(emg2r(:,2:end)) EO.maxFFT(emg3r(:,2:end)) EO.maxFFT(emg4r(:,2:end)) EO.maxFFT(emg5r(:,2:end)) EO.maxFFT(emg6r(:,2:end))];
-        f_gyro_l = [EO.maxFFT(glx(:,2:end)) EO.maxFFT(gly(:,2:end)) EO.maxFFT(glz(:,2:end))];
-        f_gyro_r = [EO.maxFFT(grx(:,2:end)) EO.maxFFT(gry(:,2:end)) EO.maxFFT(grz(:,2:end))];
-        f_or_l = [EO.maxFFT(orl(:,2:end)) EO.maxFFT(opl(:,2:end)) EO.maxFFT(oyl(:,2:end))];
-        f_or_r = [EO.maxFFT(orr(:,2:end)) EO.maxFFT(opr(:,2:end)) EO.maxFFT(oyr(:,2:end))];
-        f_label = [fl_nm_ind];
+        tmp_feature_acc_l = [ext_obj.maxFFT(alx(:,2:end)), ext_obj.maxFFT(aly(:,2:end)), ext_obj.maxFFT(alz(:,2:end))];
+        tmp_feature_acc_r = [tmp_feature, ext_obj.maxFFT(arx(:,2:end)) ext_obj.maxFFT(ary(:,2:end)) ext_obj.maxFFT(arz(:,2:end))];
+        tmp_feature_emg_l = [tmp_feature, ext_obj.maxFFT(emg0l(:,2:end)) ext_obj.maxFFT(emg1l(:,2:end)) ext_obj.maxFFT(emg2l(:,2:end)) ext_obj.maxFFT(emg3l(:,2:end)) ext_obj.maxFFT(emg4l(:,2:end)) ext_obj.maxFFT(emg5l(:,2:end)) ext_obj.maxFFT(emg6l(:,2:end))];
+        tmp_feature_emg_r = [tmp_feature, ext_obj.maxFFT(emg0r(:,2:end)) ext_obj.maxFFT(emg1r(:,2:end)) ext_obj.maxFFT(emg2r(:,2:end)) ext_obj.maxFFT(emg3r(:,2:end)) ext_obj.maxFFT(emg4r(:,2:end)) ext_obj.maxFFT(emg5r(:,2:end)) ext_obj.maxFFT(emg6r(:,2:end))];
+        tmp_feature_gyro_l = [tmp_feature, ext_obj.maxFFT(glx(:,2:end)) ext_obj.maxFFT(gly(:,2:end)) ext_obj.maxFFT(glz(:,2:end))];
+        tmp_feature_gyro_r = [tmp_feature, ext_obj.maxFFT(grx(:,2:end)) ext_obj.maxFFT(gry(:,2:end)) ext_obj.maxFFT(grz(:,2:end))];
+        tmp_feature_or_l = [tmp_feature, ext_obj.maxFFT(orl(:,2:end)) ext_obj.maxFFT(opl(:,2:end)) ext_obj.maxFFT(oyl(:,2:end))];
+        tmp_feature_or_r = [tmp_feature, ext_obj.maxFFT(orr(:,2:end)) ext_obj.maxFFT(opr(:,2:end)) ext_obj.maxFFT(oyr(:,2:end))];
+        tmp_feature_label = [fl_nm_ind];
         
-        feature_row = [f_acc_l,f_acc_r, f_emg_l, f_emg_r, f_gyro_l, f_gyro_r, f_or_l, f_or_r, f_label ];
         
+        feature_row = tmp_feature;
         feature_file = strcat(file_path,'features.csv');
         dlmwrite(feature_file,feature_row,'-append');
    
