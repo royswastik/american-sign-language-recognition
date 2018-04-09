@@ -4,7 +4,6 @@ function plot_util(x, y, ttl, xlbl, ylbl, file_path, file_nm)
       plot(x,cell2mat(y(cnt)))
       hold on
     end
-    disp(file_nm)
     title(ttl)
     ylabel(xlbl)
     xlabel(ylbl)
