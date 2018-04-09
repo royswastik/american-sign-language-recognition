@@ -20,20 +20,29 @@ for i = 1:classCount
 end
 % Model=svm.train(X_train,y_train);
 
-for i = 1:length(y_test)
-    test_instance = X_test(i);
-    predicted_lab
-    for j = 1:10
-    end
-end
+predictions = {};
 
-% [label,score] = predict(SVMModel,X_test);
-predict=svm.predict(Model,X_test);
+%classify test cases
+for j=1:size(y_test,1)
+    test_instance = X_test(i);
+    max_score = 0;
+    max_label = 0;
+    for k=1:10
+        [label,score] = predict(SVMModels{k},test_instance);
+        if label == 1
+            if score > max_score
+                max_score = score;
+                max_label = k;
+            end
+        end
+    end
+    predictions(j) = k;
+end
 
 
 tc = transpose(y_test); % True classes
 % pc = transpose(label); % Predicted classes
-pc = transpose(predict); % Predicted classes
+pc = transpose(predictions); % Predicted classes
 
 % h = figure;
 % plotroc(tc,pc);
