@@ -88,6 +88,18 @@ classdef extraction_methods
         feature=hamming(x)
 	end
 	%hamming window - end
+	
+	%Cumulative sum - start
+	function feature=cumulative_sum(x)
+	   x=cell2mat(x)
+	   feature=cumsum(x)
+	end
+	
+	%variance - start
+	function feature= variancee(x)
+		x=cell2mat(x)
+		feature=vairance(x)
+	end
     
     %Gyroscore mean - start
 	function feature = gyroscope_mean(obj,gx, gy, gz)
