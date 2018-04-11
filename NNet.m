@@ -61,11 +61,14 @@ tn = cm(2,2);
 
 sensitivity = tp /( tp + fn );
 specificity = tn /( fp + tn );
+recall = tp / ( tp + fn );
 accuracy = (tp+tn) / (tp+fn+fp+tn); 
 tpr = sensitivity;
 fpr = 1-specificity;
-precision = tp /( tp + fp );
 fVal = (2*tpr*precision)/(tpr+precision);
+precision = tp /( tp + fp );
+recall = tp / ( tp + fn );
+f1score = (2*recall*precision) / ( recall + precision);
 
 fprintf('The sensitivity/Recall is : %d \n', sensitivity);
 fprintf('The specificity is : %d \n', specificity);
@@ -77,7 +80,7 @@ fprintf('The fVal is : %d \n', fVal);
 
 acc = accuracy;
 precision = precision; 
-recall = sensitivity;
-f1score = fVal;
+recall = recall;
+f1score = f1score;
 
 end
