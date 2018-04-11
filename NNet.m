@@ -9,7 +9,7 @@ hiddenLayerSize = 10;
 
 % Returns the neural network model
 net = patternnet(hiddenLayerSize, trainFcn);
-saveCompactModel(net, 'models/NeuralNetModel');
+
 
 net.divideFcn = 'divideind';
 
@@ -25,6 +25,7 @@ net.divideParam.testInd = (train_len+1):len;
 
 % Train the Network
 [net,tr] = train(net,x,t);
+
 
 % Test the Network
 y = net(x);
