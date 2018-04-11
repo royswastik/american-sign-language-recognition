@@ -44,7 +44,6 @@ f1score = (2*recall*precision) / ( recall + precision);
     fprintf('The tpr is : %d \n', tpr);
     fprintf('The fpr is : %d \n', fpr);
     fprintf('The precision is : %d \n', precision);
-    fprintf('The fVal is : %d \n', fVal);
 
     acc = accuracy;
     precision = precision; 

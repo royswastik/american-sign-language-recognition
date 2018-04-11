@@ -7,7 +7,8 @@ data_Y = data_tmp(:,end);
 
 %%n-by-p data matrix data_X(162X20)5 function for each sensor
 % Perform a principal component analysis of the data.
-[coefs,score,latent,tsquare] = princomp(zscore(data_X));
+% [coefs,score,latent,tsquare] = princomp(zscore(data_X));
+[coefs,score,latent,tsquare] = pca(zscore(data_X));
 
 %COEFF is a p-by-p matrix (15X15), each column containing coefficients for one principal component. 
 %'coeff' are the principal component vectors. These are the eigenvectors of the covariance matrix.
