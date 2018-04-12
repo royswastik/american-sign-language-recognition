@@ -1,34 +1,42 @@
 EO = extraction_methods;
 
 fl_nms = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
+file_path = 'C:\MyStuff\ASU\Spring_2018\DM\Project\time-series-feature-extraction';
+mkdir('features')
+for i = 11:12
+    %file_path_separator = '/';
+    file_path_separator = '\';
+    if i < 10
+        idx = strcat('0',num2str(i));
+    else
+        idx = num2str(i)
+    end
+    dataFolder = strcat('Output',idx);
+    userPath = strcat(file_path,file_path_separator);
+    % if feature.csv is present before hand then delete 
+    %delete(strcat(file_path,'features.csv'))
+    featureFileName = strcat('features',num2str(idx),'.csv');
+    disp(featureFileName)
+    for fl_nm_ind = 1:length(fl_nms)
+        fig_path = strcat(file_path,fl_nms(fl_nm_ind),file_path_separator);
+        fl_nm = char(strcat('Data for Users\',dataFolder,file_path_separator,fl_nms(fl_nm_ind),'.csv'));
+        fid = fopen(fl_nm, 'rt');
 
-file_path_separator = '/';
-file_path = '/Users/jaydeep/jaydeep_workstation/ASU/Spring2018/MC_535/project/';
+        datatypes = '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+        data = textscan(fid,datatypes,'headerlines', 1, 'delimiter', ',');
+        fclose(fid); 
+        height = length(data{1}) - 34 +1;
 
-% if feature.csv is present before hand then delete 
-delete(strcat(file_path,'features.csv'))
-
-
-for fl_nm_ind = 1:length(fl_nms)
-    fig_path = strcat(file_path,fl_nms(fl_nm_ind),file_path_separator);
-    fl_nm = char(strcat('actions/', fl_nms(fl_nm_ind),'.csv'));
-    fid = fopen(fl_nm, 'rt');
-
-    datatypes = '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
-    data = textscan(fid,datatypes,'headerlines', 1, 'delimiter', ',');
-    fclose(fid); 
-    height = length(data{1}) - 34 +1;
-    
-    for row = 1:34:height
-%     for row = 1:34:67
+        for row = 1:34:height
+        %     for row = 1:34:67
         alx =[];aly =[];alz =[];arx =[];ary =[];arz =[];
         glx =[];gly =[];glz =[];grx =[];gry =[];grz =[];
         orl =[];opl =[];oyl =[];orr =[];opr =[];oyr =[];
         emg0l = [];emg1l = [];emg2l = [];emg3l = [];emg4l = [];emg5l = [];emg6l = [];emg7l = [];
         emg0r = [];emg1r = [];emg2r = [];emg3r = [];emg4r = [];emg5r = [];emg6r = [];emg7r = [];
         for col = 1:46
-            
-%             Gettings sensors values for each action
+
+        %             Gettings sensors values for each action
             alx = [alx data{col}(row,1)];aly = [aly data{col}(row+1,1)];alz = [alz data{col}(row+2,1)];
             arx = [arx data{col}(row+3,1)];ary = [ary data{col}(row+4,1)];arz = [arz data{col}(row+5,1)];
 
@@ -46,9 +54,9 @@ for fl_nm_ind = 1:length(fl_nms)
             orl = [orl data{col}(row+28,1)];opl = [opl data{col}(row+29,1)];oyl = [oyl data{col}(row+30,1)];
             orr = [orr data{col}(row+31,1)];opr = [opr data{col}(row+32,1)];oyr = [oyr data{col}(row+33,1)];
         end
-        
-        
-%         Setting features for classification task
+
+
+        %         Setting features for classification task
         f_acc_l = [EO.maxFFT(alx(:,2:end)), EO.maxFFT(aly(:,2:end)), EO.maxFFT(alz(:,2:end))];
         f_acc_r = [EO.maxFFT(arx(:,2:end)) EO.maxFFT(ary(:,2:end)) EO.maxFFT(arz(:,2:end)) ...
             EO.waveform_length(arx(:,2:end)) EO.waveform_length(ary(:,2:end)) EO.waveform_length(arz(:,2:end)) ...
@@ -74,14 +82,15 @@ for fl_nm_ind = 1:length(fl_nms)
         f_or_l = [EO.maxFFT(orl(:,2:end)) EO.maxFFT(opl(:,2:end)) EO.maxFFT(oyl(:,2:end))];
         f_or_r = [EO.maxFFT(orr(:,2:end)) EO.maxFFT(opr(:,2:end)) EO.maxFFT(oyr(:,2:end))];
         f_label = [fl_nm_ind];
-        
+
         feature_row = [f_acc_l,f_acc_r, f_emg_l, f_emg_r, f_gyro_l, f_gyro_r, f_or_l, f_or_r, f_label ];
-        
+
         %Replacing NaN with zeros
         feature_row(isnan(feature_row))=0;
         
-        feature_file = strcat(file_path,'features.csv');
+        feature_file = strcat(file_path,file_path_separator,'features',file_path_separator,featureFileName);
         dlmwrite(feature_file,feature_row,'-append');
-   
+
+    end
     end
 end

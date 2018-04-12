@@ -1,3 +1,6 @@
 plots/
 *.asv
 models/
+Output/
+Data for Users - Copy/
+node_modules/

@@ -85,20 +85,20 @@ classdef extraction_methods
 	%Hamming window - start
 	function feature=hamming_window(obj,x)
         x = cell2mat(x);
-        feature=hamming(x)
+        feature=hamming(x);
 	end
 	%hamming window - end
 	
 	%Cumulative sum - start
 	function feature=cumulative_sum(x)
-	   x=cell2mat(x)
-	   feature=cumsum(x)
+	   x=cell2mat(x);
+	   feature=cumsum(x);
 	end
 	
 	%variance - start
 	function feature= variancee(x)
-		x=cell2mat(x)
-		feature=vairance(x)
+		x=cell2mat(x);
+		feature=vairance(x);
 	end
     
     %Gyroscore mean - start
@@ -136,11 +136,11 @@ classdef extraction_methods
       var_z = var(Z);
       max_variance = [var_x var_y var_z];
       if max_variance == var_x
-          feature = mean(X)
+          feature = mean(X);
       elseif max_variance == var_y
-          feature = mean(Y)
+          feature = mean(Y);
       else
-          feature = mean(Z)
+          feature = mean(Z);
       end     
     end
     

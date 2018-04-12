@@ -1,0 +1,25 @@
+{
+  "name": "time-series-feature-extraction",
+  "version": "1.0.0",
+  "description": "This repository contains techniques to extract features from time series data.",
+  "main": "csv_reformat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royswastik/time-series-feature-extraction.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royswastik/time-series-feature-extraction/issues"
+  },
+  "homepage": "https://github.com/royswastik/time-series-feature-extraction#readme",
+  "dependencies": {
+    "csv": "^3.0.2",
+    "csv-load-sync": "^1.0.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
