@@ -3,9 +3,9 @@ data_tmp = dlmread('pca_feature.csv');
 baseDir = pwd;
 mkdir('Accuracy');
 %Storing the generated Accuracy, Precision, Recall , F1_Score
-svmFile = fullfile(baseDir,'Accuracy','SVM_Metrics.csv');
-nnFile = fullfile(baseDir,'Accuracy','NN_Metrics.csv');
-dtFile = fullfile(baseDir,'Accuracy','DT_Metrics.csv');
+% svmFile = fullfile(baseDir,'Accuracy','SVM_Metrics.csv');
+% nnFile = fullfile(baseDir,'Accuracy','NN_Metrics.csv');
+% dtFile = fullfile(baseDir,'Accuracy','DT_Metrics.csv');
 metrics = ["User", "Action", "Accuracy","Precision","Recall","F1_Score"];
 actions = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
 
@@ -52,6 +52,6 @@ for i = 1:10  %For each action
     dt_data = [ dt_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
 end
 
-xlswrite(svmFile,svm_data);
-xlswrite(nnFile,nn_data);
-xlswrite(dtFile,dt_data);
+writetable(array2table(svm_data), 'Accuracy/SVM_Metrics.csv');
+writetable(array2table(nn_data), 'Accuracy/NN_Metrics.csv');
+writetable(array2table(dt_data), 'Accuracy/DT_Metrics.csv');
