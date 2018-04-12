@@ -2,12 +2,12 @@
 
 fl_nms = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
 
-file_path_separator = '\';
+file_path_separator = '/';
 
 
 for fl_nm_ind = 1:length(fl_nms)
-    fig_path = strcat('D:\workspace\asu\matlab\mc\time-series-feature-extraction\plots\',fl_nms(fl_nm_ind),'\');
-    fl_nm = char(strcat('actions\', fl_nms(fl_nm_ind),'.csv'));
+    fig_path = strcat('/Users/adityakumar/Desktop/portal/time-series-feature-extraction/plots/',fl_nms(fl_nm_ind),'/');
+    fl_nm = char(strcat('actions/', fl_nms(fl_nm_ind),'.csv'));
     fid = fopen(fl_nm, 'rt');
 
     datatypes = '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
@@ -66,7 +66,7 @@ end
 
 function plot_helper(sensors, file_name, fig_path, title, x_label, y_label)
     first_sensor = sensors(1, :);
-    sensor_dir_name = strcat(char(fig_path),file_name, '\');
+    sensor_dir_name = strcat(char(fig_path),file_name, '/');
     mkdir(char(fig_path));
     mkdir(sensor_dir_name);
     file_name = strcat(file_name,'_',extractBefore(first_sensor(1,1),'_'));
@@ -87,7 +87,7 @@ function plot_helper(sensors, file_name, fig_path, title, x_label, y_label)
 end
 
 function plot_FFT(sensors, file_name, fig_path, title, x_label, y_label)
-    fig_path = strcat(fig_path, 'FFT', '\');
+    fig_path = strcat(fig_path, 'FFT', '/');
     x_label = 'Frequency';
     sensors_frequency = [];
     for sensor_index = 1:length(sensors(:, 1))
