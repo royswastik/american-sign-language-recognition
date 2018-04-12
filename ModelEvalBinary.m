@@ -6,10 +6,8 @@ mkdir('Accuracy');
 svmFile = fullfile(baseDir,'Accuracy','SVM_Metrics.csv');
 nnFile = fullfile(baseDir,'Accuracy','NN_Metrics.csv');
 dtFile = fullfile(baseDir,'Accuracy','DT_Metrics.csv');
-metrics = ["Accuracy","Precision","Recall","F1_Score"];
-xlswrite(svmFile,metrics);
-xlswrite(svmFile,nnFile);
-xlswrite(svmFile,dtFile);
+metrics = ["User", "Action", "Accuracy","Precision","Recall","F1_Score"];
+actions = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
 
 X_train = [];
 X_test = [];
@@ -31,7 +29,12 @@ end
 
 % [acc,precision,recall, f1score] = SVM(X_train,y_train,X_test,y_test);
 classNames = unique([y_test' y_train']) ;
-for i = 1:10
+
+svm_data = metrics;
+nn_data = metrics;
+dt_data = metrics;
+user_idx = 38;
+for i = 1:10  %For each action
     y_train_2 = y_train;
     y_train_2(y_train_2 ~= classNames(i)) = 0; % Create binary classes for each classifier
     y_train_2(y_train_2 == classNames(i)) = 1;
@@ -40,12 +43,15 @@ for i = 1:10
     y_test2(y_test2 ~= classNames(i)) = 0; % Create binary classes for each classifier
     y_test2(y_test2 == classNames(i)) = 1;
     [acc,precision,recall, f1score] = SVM(X_train,y_train_2,X_test,y_test2, i);
-    xlswrite(svmFile,[acc,precision,recall, f1score])
+    svm_data = [ svm_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
     
     [acc,precision,recall, f1score] = NNet([X_train; X_test] ,[y_train_2 ;y_test2]);
-    xlswrite(nnFile,[acc,precision,recall, f1score])
+    nn_data = [ nn_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
     
     [acc,precision,recall, f1score] = DecisionTree(X_train,y_train_2,X_test,y_test2);
-    xlswrite(dtFile,[acc,precision,recall, f1score])
+    dt_data = [ dt_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
 end
 
+xlswrite(svmFile,svm_data);
+xlswrite(nnFile,nn_data);
+xlswrite(dtFile,dt_data);
