@@ -1,7 +1,7 @@
-function [acc,precision,recall, f1score] = NNet(nn_X,nn_Y)
+function [acc,precision,recall, f1score] = NNet(nn_X_train, nn_X_test,nn_Y_train, nn_Y_test)
 
-x = nn_X';
-t = nn_Y';
+x = nn_X_train';
+t = nn_Y_train';
 
 trainFcn = 'trainscg';
 
@@ -13,8 +13,8 @@ net = patternnet(hiddenLayerSize, trainFcn);
 
 net.divideFcn = 'divideind';
 
-len = length(nn_X);
-train_len = round(len*0.6);
+len = length(nn_X_train);
+train_len = round(len*1);
 val_len = round(train_len*0.7);
 
 net.divideParam.trainInd = 1:val_len;
@@ -28,31 +28,31 @@ net.divideParam.testInd = (train_len+1):len;
 
 
 % Test the Network
-y = net(x);
-e = gsubtract(t,y);
-performance = perform(net,t,y)
-tind = vec2ind(t);
+y = net(nn_X_test');
+e = gsubtract(nn_Y_test',y);
+performance = perform(net,nn_Y_test',y)
+tind = vec2ind(nn_Y_test');
 yind = vec2ind(y);
 percentErrors = sum(tind ~= yind)/numel(tind);
 
 % View the Network
-% view(net)
-% h = figure;
-% plotroc(t,y);
-% saveas(h,'NN_ROC.png');
-% h = figure;
-% plotconfusion(t,y);
-% saveas(h,'NN_CONFUSION.png');
+view(net)
+h = figure;
+plotroc(nn_Y_test',y);
+saveas(h,'NN_ROC.png');
+h = figure;
+plotconfusion(nn_Y_test',y);
+saveas(h,'NN_CONFUSION.png');
 % Plots
 % Uncomment these lines to enable various plots.
-%figure, plotperform(tr)
-%figure, plottrainstate(tr)
-%figure, ploterrhist(e)
-%figure, plotconfusion(t,y)
-%figure, plotroc(t,y)
+figure, plotperform(tr)
+figure, plottrainstate(tr)
+figure, ploterrhist(e)
+figure, plotconfusion(nn_Y_test',y)
+figure, plotroc(nn_Y_test',y)
 
 
-[C,cm,ind,per] = confusion(t,y);
+[C,cm,ind,per] = confusion(nn_Y_test',y);
 
 tp = cm(1,1);
 fn = cm(1,2);

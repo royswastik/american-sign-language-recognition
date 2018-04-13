@@ -1,5 +1,6 @@
-users = [1,2,3,4,5,7,8,9,11,12]
-basePath = 'C:\MyStuff\ASU\Spring_2018\DM\Project\time-series-feature-extraction\';
+users = [1,2,3,4,5,7,8,9,11,12];
+SamplerUtil = sampler_util;
+basePath = '';
 %Storing the generated Accuracy, Precision, Recall , F1_Score
 % svmFile = fullfile(baseDir,'Accuracy','SVM_Metrics.csv');
 % nnFile = fullfile(baseDir,'Accuracy','NN_Metrics.csv');
@@ -43,24 +44,34 @@ for j = 1:10
         y_test = [y_test; data_Y_b(1+length(data_Y_b)*training_fraction:end, :)];
     end
 
-    % [acc,precision,recall, f1score] = SVM(X_train,y_train,X_test,y_test);
     classNames = unique([y_test' y_train']) ;
     user_idx = users(j);
     for i = 1:10  %For each action
+        
+        X_train2 = X_train;
         y_train_2 = y_train;
+%         dataXY = SamplerUtil.undersample([X_train2 y_train_2], classNames(i));  %Comment out to remove undersampling
+%         X_train2 = dataXY(:, 1:end-1);  %Comment out to remove undersampling
+%         y_train_2 = dataXY(:, end);     %Comment out to remove undersampling
+        
         y_train_2(y_train_2 ~= classNames(i)) = 0; % Create binary classes for each classifier
         y_train_2(y_train_2 == classNames(i)) = 1;
 
+        X_test2 = X_test;
         y_test2 = y_test;
+%         dataXY = SamplerUtil.undersample([X_test2 y_test2], classNames(i));     %Comment out to remove undersampling
+%         X_test2 = dataXY(:, 1:end-1);       %Comment out to remove undersampling
+%         y_test2 = dataXY(:, end);   %Comment out to remove undersampling
+        
         y_test2(y_test2 ~= classNames(i)) = 0; % Create binary classes for each classifier
         y_test2(y_test2 == classNames(i)) = 1;
-        [acc,precision,recall, f1score] = SVM(X_train,y_train_2,X_test,y_test2, i);
+        [acc,precision,recall, f1score] = SVM(X_train2,y_train_2,X_test2,y_test2, i);
         svm_data = [ svm_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
 
-        [acc,precision,recall, f1score] = NNet([X_train; X_test] ,[y_train_2 ;y_test2]);
+        [acc,precision,recall, f1score] = NNet(X_train2, X_test2 ,y_train_2, y_test2);
         nn_data = [ nn_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
 
-        [acc,precision,recall, f1score] = DecisionTree(X_train,y_train_2,X_test,y_test2);
+        [acc,precision,recall, f1score] = DecisionTree(X_train2,y_train_2,X_test2,y_test2);
         dt_data = [ dt_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
     end
 end

@@ -3,6 +3,7 @@ function [acc,precision,recall, f1score] = DecisionTree(X_train,y_train,X_test,y
 DmModel = fitctree(X_train,y_train);
 
 saveCompactModel(DmModel, 'models/DmModel');
+% view(DmModel, 'Mode', 'graph');
 
 [label,score] = predict(DmModel,X_test);
 
