@@ -1,12 +1,12 @@
-svm_metrics = table2array(readtable('Accuracy/SVM_Metrics.csv'));
-nn_metrics = table2array(readtable('Accuracy/NN_Metrics.csv'));
-dt_metrics = table2array(readtable('Accuracy/DT_Metrics.csv'));
+svm_metrics = table2array(readtable('Accuracy/SVM_Metrics_undersampled.csv'));
+nn_metrics = table2array(readtable('Accuracy/SVM_Metrics_undersampled.csv'));
+dt_metrics = table2array(readtable('Accuracy/SVM_Metrics_undersampled.csv'));
 
 actions = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
 
 users = {'1', '2', '3', '4', '5', '7', '8', '9', '11', '12'};
 for a = 1: length(actions)
-action = 'About';
+action = cell2mat(actions(a));
 f1_score_bar_data = [];
 precision_bar_data = [];
 recall_bar_data = [];

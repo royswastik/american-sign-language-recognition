@@ -1,4 +1,4 @@
-function [acc,precision,recall, f1score] = NNet(nn_X_train, nn_X_test,nn_Y_train, nn_Y_test)
+function [acc,precision,recall, f1score] = NNet(nn_X_train, nn_X_test,nn_Y_train, nn_Y_test, label)
 
 x = nn_X_train';
 t = nn_Y_train';
@@ -58,6 +58,10 @@ tp = cm(1,1);
 fn = cm(1,2);
 fp = cm(2,1);
 tn = cm(2,2); 
+
+if tn < 3
+    figure, plotconfusion(nn_Y_test',y)
+end
 
 sensitivity = tp /( tp + fn );
 specificity = tn /( fp + tn );
