@@ -50,18 +50,18 @@ for j = 1:10
         
         X_train2 = X_train;
         y_train_2 = y_train;
-%         dataXY = SamplerUtil.undersample([X_train2 y_train_2], classNames(i));  %Comment out to remove undersampling
-%         X_train2 = dataXY(:, 1:end-1);  %Comment out to remove undersampling
-%         y_train_2 = dataXY(:, end);     %Comment out to remove undersampling
+        dataXY = SamplerUtil.undersample([X_train2 y_train_2], classNames(i));  %Comment out to remove undersampling
+        X_train2 = dataXY(:, 1:end-1);  %Comment out to remove undersampling
+        y_train_2 = dataXY(:, end);     %Comment out to remove undersampling
         
         y_train_2(y_train_2 ~= classNames(i)) = 0; % Create binary classes for each classifier
         y_train_2(y_train_2 == classNames(i)) = 1;
 
         X_test2 = X_test;
         y_test2 = y_test;
-%         dataXY = SamplerUtil.undersample([X_test2 y_test2], classNames(i));     %Comment out to remove undersampling
-%         X_test2 = dataXY(:, 1:end-1);       %Comment out to remove undersampling
-%         y_test2 = dataXY(:, end);   %Comment out to remove undersampling
+        dataXY = SamplerUtil.undersample([X_test2 y_test2], classNames(i));     %Comment out to remove undersampling
+        X_test2 = dataXY(:, 1:end-1);       %Comment out to remove undersampling
+        y_test2 = dataXY(:, end);   %Comment out to remove undersampling
         
         y_test2(y_test2 ~= classNames(i)) = 0; % Create binary classes for each classifier
         y_test2(y_test2 == classNames(i)) = 1;
@@ -76,6 +76,6 @@ for j = 1:10
     end
 end
 
-writetable(array2table(svm_data), 'Accuracy/SVM_Metrics.csv');
-writetable(array2table(nn_data), 'Accuracy/NN_Metrics.csv');
-writetable(array2table(dt_data), 'Accuracy/DT_Metrics.csv');
+writetable(array2table(svm_data), 'Accuracy/SVM_Metrics_undersampled.csv');
+writetable(array2table(nn_data), 'Accuracy/NN_Metrics_undersampled.csv');
+writetable(array2table(dt_data), 'Accuracy/DT_Metrics_undersampled.csv');

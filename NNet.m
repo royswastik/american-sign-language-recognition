@@ -36,20 +36,20 @@ yind = vec2ind(y);
 percentErrors = sum(tind ~= yind)/numel(tind);
 
 % View the Network
-view(net)
-h = figure;
-plotroc(nn_Y_test',y);
-saveas(h,'NN_ROC.png');
-h = figure;
-plotconfusion(nn_Y_test',y);
-saveas(h,'NN_CONFUSION.png');
+% view(net)
+% h = figure;
+% plotroc(nn_Y_test',y);
+% saveas(h,'NN_ROC.png');
+% h = figure;
+% plotconfusion(nn_Y_test',y);
+% saveas(h,'NN_CONFUSION.png');
 % Plots
 % Uncomment these lines to enable various plots.
-figure, plotperform(tr)
-figure, plottrainstate(tr)
-figure, ploterrhist(e)
-figure, plotconfusion(nn_Y_test',y)
-figure, plotroc(nn_Y_test',y)
+% figure, plotperform(tr)
+% figure, plottrainstate(tr)
+% figure, ploterrhist(e)
+% figure, plotconfusion(nn_Y_test',y)
+% figure, plotroc(nn_Y_test',y)
 
 
 [C,cm,ind,per] = confusion(nn_Y_test',y);
