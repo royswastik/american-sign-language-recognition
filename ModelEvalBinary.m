@@ -65,8 +65,8 @@ for j = 1:10
         
         y_test2(y_test2 ~= classNames(i)) = 0; % Create binary classes for each classifier
         y_test2(y_test2 == classNames(i)) = 1;
-%         [acc,precision,recall, f1score] = SVM(X_train2,y_train_2,X_test2,y_test2, i);
-%         svm_data = [ svm_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
+        [acc,precision,recall, f1score] = SVM(X_train2,y_train_2,X_test2,y_test2, i);
+        svm_data = [ svm_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
 
         [acc,precision,recall, f1score] = NNet(X_train2, X_test2 ,y_train_2, y_test2, actions(i));
         nn_data = [ nn_data ; [user_idx ,actions(i) ,acc,precision,recall, f1score]];
