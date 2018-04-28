@@ -1,25 +1,28 @@
 EO = extraction_methods;
+load('constants');
+% actions = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
+file_path = 'actions2';
+file_paths = strsplit(genpath(file_path), ':')
+file_paths = file_paths(2:end-1);
 
-fl_nms = {'About', 'And', 'Can', 'Cop', 'Deaf', 'Decide', 'Father', 'Find', 'Goout', 'Hearing'};
-file_path = 'C:\MyStuff\ASU\Spring_2018\DM\Project\time-series-feature-extraction';
 mkdir('features')
-for i = 11:12
-    %file_path_separator = '/';
-    file_path_separator = '\';
-    if i < 10
-        idx = strcat('0',num2str(i));
-    else
-        idx = num2str(i)
-    end
-    dataFolder = strcat('Output',idx);
-    userPath = strcat(file_path,file_path_separator);
+for i = 1:length(file_paths)
+    file_path_separator = '/';
+%     file_path_separator = '\';
+
+%     dataFolder = strcat('Output',idx);
+    userPath = strcat(file_paths(i));
     % if feature.csv is present before hand then delete 
     %delete(strcat(file_path,'features.csv'))
-    featureFileName = strcat('features',num2str(idx),'.csv');
-    disp(featureFileName)
-    for fl_nm_ind = 1:length(fl_nms)
-        fig_path = strcat(file_path,fl_nms(fl_nm_ind),file_path_separator);
-        fl_nm = char(strcat('Data for Users\',dataFolder,file_path_separator,fl_nms(fl_nm_ind),'.csv'));
+    
+%     disp(featureFileName)
+    for fl_nm_ind = 1:length(actions)
+        
+        featureFileName = strcat('features',actions(fl_nm_ind),'.csv');
+        
+        
+        fig_path = strcat(file_path,actions(fl_nm_ind),file_path_separator);
+        fl_nm = char(strcat(userPath,file_path_separator,actions(fl_nm_ind),'.csv'));
         fid = fopen(fl_nm, 'rt');
 
         datatypes = '%s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
@@ -88,7 +91,8 @@ for i = 11:12
         %Replacing NaN with zeros
         feature_row(isnan(feature_row))=0;
         
-        feature_file = strcat(file_path,file_path_separator,'features',file_path_separator,featureFileName);
+        feature_file = strcat('features',file_path_separator,'features.csv');
+        disp(featureFileName);
         dlmwrite(feature_file,feature_row,'-append');
 
     end

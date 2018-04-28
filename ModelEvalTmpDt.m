@@ -1,10 +1,10 @@
 % read in data
-data_tmp = dlmread('pca_feature.csv');
+data_tmp = dlmread('features/features.csv');
 X_train = [];
 X_test = [];
 y_train = [];
 y_test = [];
-for i = 1:10
+for i = 1:20
     bucket = data_tmp(find(data_tmp(:,end) == i), :);
     data_X_b = bucket(:,1:end-1);
     data_Y_b = bucket(:,end);
@@ -17,6 +17,11 @@ for i = 1:10
     y_train = [y_train; data_Y_b(1:length(data_Y_b)*training_fraction, :)];
     y_test = [y_test; data_Y_b(1+length(data_Y_b)*training_fraction:end, :)];
 end
+
+training_data = [X_train, y_train];
+training_data=training_data(randperm(size(training_data,1)),:);
+X_train = training_data(:, 1:end-1);
+y_train = training_data(:, end);
 
 MdlDefault = fitctree(X_train,y_train);
 
@@ -48,3 +53,9 @@ fprintf('The accuracy is : %d \n', accuracy);
 fprintf('The tpr is : %d \n', tpr);
 fprintf('The fpr is : %d \n', fpr);
 fprintf('The precision is : %d \n', precision);
+
+
+%Saving the model
+model_dtree = MdlDefault;
+% saveCompactModel(MdlDefault, model_dtree)
+save('models/DT_model2', 'model_dtree')

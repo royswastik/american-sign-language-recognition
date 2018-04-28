@@ -1,7 +1,7 @@
 var loader = require('csv-load-sync');
 var fs = require('fs');
 var path = require('path');
-var direc = 'Data for Users';
+var direc = 'actions2';
 var csvFolders = fs.readdirSync(direc);
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);

@@ -1,10 +1,10 @@
 % read in data
-data_tmp = dlmread('pca_feature.csv');
+data_tmp = dlmread('pca_features.csv');
 X_train = [];
 X_test = [];
 y_train = [];
 y_test = [];
-for i = 1:10
+for i = 1:20
     bucket = data_tmp(find(data_tmp(:,end) == i), :);
     data_X_b = bucket(:,1:end-1);
     data_Y_b = bucket(:,end);
@@ -26,6 +26,10 @@ tc = transpose(y_test); % True classes
 pc = transpose(labels); % Predicted classes
 
 [C,order] = confusionmat(tc,pc);
+
+nb_model = Mdl;
+% saveCompactModel(Mdl, model_nm);
+save('models/NB_model', 'nb_model');
 
 tp = C(1,1);
 fn = C(1,2);

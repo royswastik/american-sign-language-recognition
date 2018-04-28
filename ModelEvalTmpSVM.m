@@ -1,10 +1,10 @@
 % read in data
-data_tmp = dlmread('pca_feature.csv');
+data_tmp = dlmread('features/features.csv');
 X_train = [];
 X_test = [];
 y_train = [];
 y_test = [];
-for i = 1:10
+for i = 1:20
     bucket = data_tmp(find(data_tmp(:,end) == i), :);
     data_X_b = bucket(:,1:end-1);
     data_Y_b = bucket(:,end);
@@ -63,8 +63,11 @@ labels = predict(CMdl,XTest);
     fprintf('The tpr is : %d \n', tpr);
     fprintf('The fpr is : %d \n', fpr);
     fprintf('The precision is : %d \n', precision);
-
-
+    svm_model = CMdl;
+save('models/SVM_model', 'svm_model');
+%Saving the model
+% model_nm = 'models/SVM_model';
+% saveCompactModel(CMdl, model_nm)
 
 % [acc,precision,recall, f1score] = SVM(X_train,y_train,X_test,y_test);
 % disp(acc);

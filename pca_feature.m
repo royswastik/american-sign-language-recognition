@@ -1,16 +1,12 @@
-basePath = 'C:\MyStuff\ASU\Spring_2018\DM\Project\time-series-feature-extraction\';
-mkdir('pca_features')
-for i = 11:12
+basePath = '';
+
+
 % read in data
-    file_path_separator = '\';
-    if i < 10
-        idx = strcat('0',num2str(i));
-    else
-        idx = num2str(i)
-    end
-    dataFile = strcat(basePath,'features',file_path_separator,'features',idx,'.csv');
+    file_path_separator = '/';
+
+    dataFile = strcat(basePath,'features',file_path_separator,'features.csv');
     data_tmp = dlmread(dataFile);
-    pcaFileName = strcat('pca_features',idx,'.csv');
+    pcaFileName = strcat('pca_features.csv');
 
     data_X = data_tmp(:,1:end-1);
     data_Y = data_tmp(:,end);
@@ -91,7 +87,12 @@ for i = 11:12
     title('First three PC -- ScatterPlot')
     % %%%%%%%%%%%%%%For first three Principal Components END%%%%%%%%%%%%%%%%%%%%%
 
-    pca_features = [score(:,1:17) data_Y];
-    pca_file = strcat(basePath,'pca_features',file_path_separator,pcaFileName);
-    dlmwrite(pca_file,pca_features);
-end
+    pca_features = [score(:,1:35) data_Y];
+%     pca_file = strcat(basePath,'pca_features',file_path_separator,pcaFileName);
+    dlmwrite(pcaFileName,pca_features);
+    
+    
+    %Saving the coefs
+    save('pca_coef.mat','coefs' );
+% model_nm = 'models/SVM_model';
+% saveCompactModel(CMdl, model_nm), model_nm)

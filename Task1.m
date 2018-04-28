@@ -1,8 +1,8 @@
-folderList = ["DM07","DM08","DM28","DM34","DM34"];
+folderList = ['DM07','DM08','DM28','DM34','DM34'];
 baseDir = 'C:\MyStuff\ASU\Spring_2018\DM\Project\Phase2';
-gestureList = ["ABOUT","CAN","AND","COP","DEAF","DECIDE","FATHER","FIND","GO OUT","HEARING"];
-sensorList = ["ALX","ALY","ALZ","ARX","ARY","ARZ","EMG0L","EMG1L","EMG2L","EMG3L","EMG4L","EMG5L","EMG6L","EMG7L","EMG0R","EMG1R","EMG2R","EMG3R","EMG4R","EMG5R","EMG6R","EMG7R","GLX","GLY","GLZ","GRX","GRY","GRZ","ORL","OPL","OYL","ORR","OPR","OYR"];
-finalFileNames = ["About.csv","Can.csv","And.csv","Cop.csv","Deaf.csv","Decide.csv","Father.csv","Find.csv","Goout.csv","Hearing.csv"];
+gestureList = ['ABOUT','CAN','AND','COP','DEAF','DECIDE','FATHER','FIND','GO OUT','HEARING'];
+sensorList = ['ALX','ALY','ALZ','ARX','ARY','ARZ','EMG0L','EMG1L','EMG2L','EMG3L','EMG4L','EMG5L','EMG6L','EMG7L','EMG0R','EMG1R','EMG2R','EMG3R','EMG4R','EMG5R','EMG6R','EMG7R','GLX','GLY','GLZ','GRX','GRY','GRZ','ORL','OPL','OYL','ORR','OPR','OYR'];
+finalFileNames = ['About.csv','Can.csv','And.csv','Cop.csv','Deaf.csv','Decide.csv','Father.csv','Find.csv','Goout.csv','Hearing.csv'];
 for m=1:length(folderList)
     wrkDir = char(folderList(m));
     baseDir = fullfile(baseDir,wrkDir);
@@ -29,7 +29,7 @@ for m=1:length(folderList)
                end
                M = transpose(M);
                action = gestureList(i) + count;
-               header = strcat(action,",",sensorList.');
+               header = strcat(action,',',sensorList.');
                M = cat(2,header,M);
                dataMat = cat(1,dataMat,M);
            end

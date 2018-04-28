@@ -1,10 +1,10 @@
 % read in data
-data_tmp = dlmread('pca_feature.csv');
+data_tmp = dlmread('pca_features.csv');
 X_train = [];
 X_test = [];
 y_train = [];
 y_test = [];
-for i = 1:10
+for i = 1:20
     bucket = data_tmp(find(data_tmp(:,end) == i), :);
     data_X_b = bucket(:,1:end-1);
     data_Y_b = bucket(:,end);
@@ -47,3 +47,10 @@ fprintf('The accuracy is : %d \n', accuracy);
 fprintf('The tpr is : %d \n', tpr);
 fprintf('The fpr is : %d \n', fpr);
 fprintf('The precision is : %d \n', precision);
+
+
+%Saving the model
+knn_model = Mdl;
+% saveCompactModel(Mdl, model_nm);
+save('models/KNN_model', 'knn_model');
+
