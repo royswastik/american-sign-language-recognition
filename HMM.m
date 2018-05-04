@@ -13,6 +13,7 @@ function [likelystates,accuracy] = HMM(trans_mat,emis_mat)
 
 likelystates = hmmviterbi(seq, TRANS, EMIS);
 
+% this calculates the accuracy of the generated states
 accuracy = sum(states==likelystates)/1000;
 
 end
