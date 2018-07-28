@@ -1,8 +1,7 @@
-# Time Series Feature Extraction
-This repository contains techniques to extract features from time series data.
+# AMERICAN SIGN LANGUAGE RECOGNITION
+This repository contains techniques to extract features from time series data of different american sign languages.
 
 ## Time Domain Feature Extraction Techniques
-
 
 * Means in each of the dimensions
 * Standard Deviation in each of the dimensions
